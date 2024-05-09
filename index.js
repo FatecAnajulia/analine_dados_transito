@@ -3,7 +3,7 @@ const csv = require('csv-parser');
 
 const results = [];
 
-fs.createReadStream('data.csv')
+fs.createReadStream('dados/datatran2023.csv')
   .pipe(csv())
   .on('data', (data) => results.push(data))
   .on('end', () => {
