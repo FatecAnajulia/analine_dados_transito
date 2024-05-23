@@ -1,0 +1,38 @@
+tipos de acidentes:
+
+atropelamento de pedestre
+atropelamento de animal
+capotagem
+colição com objeto
+colição frontal
+colição lateral mesmo sentido
+colição lateral sentido oposto
+colição tranversal
+colição traseira
+derramamento de carga
+engavetamento
+eventos atípicos
+incêndio
+queda de ocupante de veículo
+saída de leito carroçável
+Tombamento
+
+numeração de tipos de acidentes
+
+
+1-atropelamento de pedestre
+2-atropelamento de animal
+3-capotagem
+4-colição com objeto
+5-colição frontal
+6-colição lateral mesmo sentido
+7-colição lateral sentido oposto
+8-colição tranversal
+9-colição traseira
+10-derramamento de carga
+11-engavetamento
+12-eventos atípicos
+13-incêndio
+14-queda de ocupante de veículo
+15-saída de leito carroçável
+16-Tombamento

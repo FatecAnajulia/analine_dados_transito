@@ -10,7 +10,7 @@ As análises de dados que esse projeto irá se propor a fazer serão as de:
 
  - acidentes vesus causa
 
-  - acidente vesus região
+  - acidente vesus horário
 
 relação dos dados: 
     80% para análise
