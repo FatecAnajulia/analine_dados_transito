@@ -7,7 +7,7 @@ caminho_arquivo = '../dados/datatran2023_1trimestre_teste.csv'
 dados = pd.read_csv(caminho_arquivo, delimiter=';', on_bad_lines='skip', encoding='latin1')
 
 # Exibindo os nomes das colunas para verificar o nome correto da coluna desejada
-print(dados.columns)
+# print(dados.columns)
 
 # Acessando a coluna 'tipo_acidente'
 tipo_acidente = dados['tipo_acidente']
