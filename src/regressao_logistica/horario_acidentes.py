@@ -3,7 +3,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
  
 # Carregar os dados do arquivo CSV fornecido pelo DETRAN
-caminho_arquivo_csv = "../dados/datatran2023_1trimestre.csv"  # Substitua pelo caminho real do seu arquivo
+caminho_arquivo_csv = "../dados/acidentes2023_completa.csv"  # Substitua pelo caminho real do seu arquivo
 dados_csv = pd.read_csv(caminho_arquivo_csv)
  
  
