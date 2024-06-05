@@ -1,44 +1,15 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Definindo o caminho do arquivo CSV
-caminho_arquivo = '../dados/datatran2023_1trimestre.csv'
+caminho_arquivo = '../dados/acidentes2023_completa.csv'
 
 # Lendo o arquivo CSV, especificando o delimitador e ignorando linhas com problemas
-dados = pd.read_csv(caminho_arquivo, delimiter=';', on_bad_lines='skip', encoding='latin1')
+dados = pd.read_csv(caminho_arquivo, delimiter=';', on_bad_lines='skip', encoding='ISO-8859-1')
 
-# Exibindo os nomes das colunas para verificar o nome correto da coluna desejada
-# print(dados.columns)
-
-# Acessando a coluna 'tipo_acidente' e 'data_inversa'
+# Acessando a coluna 'tipo_acidente'
 tipo_acidente = dados['tipo_acidente']
-data_acidente = pd.to_datetime(dados['data_inversa'], dayfirst=True)
-
-# Contando a frequência de acidentes por dia
-frequencia_diaria = data_acidente.value_counts().sort_index()
-
-# Definindo os pontos para a equação da reta
-x1, y1 = frequencia_diaria.index[0].toordinal(), frequencia_diaria.iloc[0]
-x2, y2 = frequencia_diaria.index[-1].toordinal(), frequencia_diaria.iloc[-1]
-
-# Calculando a inclinação (m) e o intercepto (b) da reta
-m = (y2 - y1) / (x2 - x1)
-b = y1 - m * x1
-
-# Gerando valores de x para plotar a reta
-x = [date.toordinal() for date in frequencia_diaria.index]
-y = [m * xi + b for xi in x]
-
-# Plotando a frequência de acidentes e a reta
-plt.figure(figsize=(10, 5))
-plt.plot(frequencia_diaria.index, frequencia_diaria.values, label='Frequência diária de acidentes')
-plt.plot(frequencia_diaria.index, y, color='red', linestyle='--', label='Equação da reta (tendência)')
-plt.xlabel('Data')
-plt.ylabel('Número de Acidentes')
-plt.title('Frequência de Acidentes ao Longo do Tempo')
-plt.legend()
-plt.grid(True)
-plt.show()
 
 # Contando a frequência de cada tipo de acidente no DataFrame
 frequencia_tipos_acidente = tipo_acidente.value_counts()
@@ -48,3 +19,25 @@ porcentagem_tipos_acidente = (frequencia_tipos_acidente / frequencia_tipos_acide
 
 # Exibindo as porcentagens dos tipos de acidentes
 print(porcentagem_tipos_acidente)
+
+# Preparando os dados para a equação da reta
+x = np.arange(len(frequencia_tipos_acidente))
+y = porcentagem_tipos_acidente.values
+
+# Calculando a inclinação (m) e o intercepto (b) da reta
+m, b = np.polyfit(x, y, 1)
+
+# Gerando valores de y para plotar a reta
+y_reta = m * x + b
+
+# Plotando os tipos de acidentes e a reta de tendência
+plt.figure(figsize=(10, 5))
+plt.bar(frequencia_tipos_acidente.index, y, label='Porcentagem de Acidentes por Tipo')
+plt.plot(frequencia_tipos_acidente.index, y_reta, color='red', linestyle='--', label=f'Equação da reta: y = {m:.2f}x + {b:.2f}')
+plt.xlabel('Tipo de Acidente')
+plt.ylabel('Porcentagem de Acidentes')
+plt.title('Porcentagem de Cada Tipo de Acidente no Ano')
+plt.xticks(rotation=45, ha='right')  # Rotacionando os rótulos do eixo x para melhor visualização
+plt.legend()
+plt.grid(True)
+plt.show()
